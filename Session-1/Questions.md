@@ -1,4 +1,4 @@
-# 🧠 Python Practice (35 Questions)
+# 🧠 Python Practice (50 Questions)
 
 Do these NOW in VS Code:
 
@@ -66,6 +66,8 @@ Simple calculator:
 - Input 2 numbers
 - Perform the operation
 
+## 🔹 Basic
+
 ## Q16
 Print numbers 1–100
 
@@ -75,7 +77,7 @@ Print even numbers 1–100
 ## Q18
 Print sum of 1–n
 
-
+## 🔹 Medium
 
 ## Q19
 Factorial of a number
@@ -98,6 +100,7 @@ Print multiplication table
 ## Q25
 Fibonacci series (n terms)
 
+## 🔹 Pattern (VERY IMPORTANT)
 
 ## Q26
 ```
@@ -123,7 +126,7 @@ Fibonacci series (n terms)
 1234
 ```
 
-
+## 🔹 Logic Heavy
 
 ## Q29
 Prime number check
@@ -137,7 +140,7 @@ GCD of 2 numbers
 ## Q32
 LCM of 2 numbers
 
-
+## 🔹 Loop Control
 
 ## Q33
 Print numbers 1–50 but skip multiples of 3
@@ -147,3 +150,56 @@ Stop loop when sum exceeds 100
 
 ## Q35
 Guessing game (keep asking until correct)
+
+## 🔹 Functions - Basic
+
+## Q36
+Function to print your name
+
+## Q37
+Function to add two numbers
+
+## Q38
+Function to check even/odd
+
+## Q39
+Function to find max of 2 numbers
+
+## 🔹 Functions - Medium
+
+## Q40
+Function to find factorial
+
+## Q41
+Function to check prime
+
+## Q42
+Function to return reverse of number
+
+## Q43
+Function to count digits
+
+## Q44
+Function to sum of digits
+
+## 🔹 Functions - Slightly Advanced
+
+## Q45
+Function to return Fibonacci nth term
+
+## Q46
+Function to check palindrome
+
+## Q47
+Function to calculate GCD
+
+## Q48
+Function to calculate LCM
+
+## 🔹 Functions - Logic Building
+
+## Q49
+Function that returns list of primes till n
+
+## Q50
+Calculator using functions (+, -, *, /)
