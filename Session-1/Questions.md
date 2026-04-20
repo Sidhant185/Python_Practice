@@ -1,36 +1,24 @@
-🧠 Mini Practice (5 Questions)
+# Python Practice 
 
-Do these NOW in VS Code:
-
-Q1
-
+## Q1
 Take name input and print:
+- Hello, [name]
 
-Hello, Sidh
-
-Q2
-
+## Q2
 Take two numbers and print:
+- sum
+- product
 
-sum
-product
-
-Q3
-
+## Q3
 Take age input and print:
+- "Adult" if ≥18
+- "Minor" otherwise
 
-“Adult” if ≥18
-“Minor” otherwise
-
-Q4
-
+## Q4
 Take a number and print:
+- square
+- cube
 
-square
-cube
-
-Q5
-
+## Q5
 Take a number and check:
-
-Even or Odd
+- Even or Odd
