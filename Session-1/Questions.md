@@ -7,6 +7,7 @@ Q1
 Take name input and print:
 
 Hello, Sidh
+
 Q2
 
 Take two numbers and print:
