@@ -1,4 +1,4 @@
-# 🧠 Python Practice (15 Questions)
+# 🧠 Python Practice (35 Questions)
 
 Do these NOW in VS Code:
 
@@ -65,3 +65,85 @@ Simple calculator:
 - Input operator (+, -, *, /)
 - Input 2 numbers
 - Perform the operation
+
+## Q16
+Print numbers 1–100
+
+## Q17
+Print even numbers 1–100
+
+## Q18
+Print sum of 1–n
+
+
+
+## Q19
+Factorial of a number
+
+## Q20
+Reverse a number (123 → 321)
+
+## Q21
+Count digits in a number
+
+## Q22
+Sum of digits
+
+## Q23
+Check palindrome number
+
+## Q24
+Print multiplication table
+
+## Q25
+Fibonacci series (n terms)
+
+
+## Q26
+```
+*
+**
+***
+****
+```
+
+## Q27
+```
+****
+***
+**
+*
+```
+
+## Q28
+```
+1
+12
+123
+1234
+```
+
+
+
+## Q29
+Prime number check
+
+## Q30
+Print all primes from 1–100
+
+## Q31
+GCD of 2 numbers
+
+## Q32
+LCM of 2 numbers
+
+
+
+## Q33
+Print numbers 1–50 but skip multiples of 3
+
+## Q34
+Stop loop when sum exceeds 100
+
+## Q35
+Guessing game (keep asking until correct)
