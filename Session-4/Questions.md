@@ -408,7 +408,7 @@ def hourglassSum(matrix):
         for c in range(len(matrix[0]) - 2):
             top = sum(matrix[r][c:c+3])
             mid = matrix[r+1][c+1]
-            bot = sum(matrix[r+2][c+3])
+            bot = sum(matrix[r+2][c:c+3])
             max_sum = max(max_sum, top + mid + bot)
     return max_sum
 ```
