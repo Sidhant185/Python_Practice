@@ -694,27 +694,731 @@ print(flattened)
 5. Off-by-one errors in slicing
 6. Index out of bounds
 7. Ignoring time/space complexity
-🧠 Practice — Lists (15 Questions)
-🔹 Basic
 
-Q1 Take list input and print sum
-Q2 Find max and min in list
-Q3 Count even and odd numbers
-Q4 Reverse list (without built-in)
-Q5 Remove duplicates
+---
 
-🔹 Medium
+---
 
-Q6 Find second largest number
-Q7 Rotate list by k steps
-Q8 Merge two lists
-Q9 Find frequency of each element
-Q10 Move all zeros to end
+# 🧵 Python Practice — Strings (10 Questions)
 
-🔹 Advanced Thinking
+A comprehensive guide to string manipulation, parsing, and advanced string operations.
 
-Q11 Find missing number in range
-Q12 Find intersection of two lists
-Q13 Find pairs with given sum
-Q14 Kadane’s Algorithm (max subarray sum)
-Q15 Flatten a 2D list
+---
+
+## 🎯 SECTION 1: BASIC STRING OPERATIONS
+
+### Q16: Reverse a String
+**Problem:** Reverse a given string without using built-in reverse functions.
+
+**Example:**
+```
+Input: "Hello"
+Output: "olleH"
+
+Input: "Python"
+Output: "nohtyP"
+```
+
+**What to Use:**
+- String slicing: `str[::-1]` (simplest)
+- Loop with index from end to start
+- Recursion (for learning)
+
+**What NOT to Use:**
+- ❌ Don't use `.reverse()` (works on lists, not strings)
+- ❌ Don't manually build character by character inefficiently
+
+**Concepts:**
+- String indexing
+- String slicing
+- Iteration in reverse
+
+**Solution Approach:**
+```python
+# BEST (String slicing):
+text = "Hello"
+reversed_text = text[::-1]
+print(reversed_text)  # olleH
+
+# GOOD (Loop with index):
+text = "Hello"
+reversed_text = ""
+for i in range(len(text) - 1, -1, -1):
+    reversed_text += text[i]
+print(reversed_text)
+
+# GOOD (Using reversed() function):
+text = "Hello"
+reversed_text = "".join(reversed(text))
+print(reversed_text)
+```
+
+**Key Points:**
+- Slicing `[::-1]` is most Pythonic
+- Start from end, go backwards with step -1
+- String concatenation in loops is slow; use `join()`
+
+---
+
+### Q17: Check Palindrome String
+**Problem:** Check if a string is a palindrome (reads same forwards and backwards).
+
+**Example:**
+```
+Input: "racecar"
+Output: Palindrome
+
+Input: "hello"
+Output: Not a Palindrome
+
+Input: "A man a plan a canal Panama"
+Output: Palindrome (ignoring spaces and case)
+```
+
+**What to Use:**
+- Compare string with its reverse
+- Remove spaces and convert to lowercase
+- Two-pointer approach
+
+**What NOT to Use:**
+- ❌ Don't forget to handle spaces and case sensitivity
+- ❌ Don't hardcode checks for each character
+
+**Concepts:**
+- String comparison
+- String transformation
+- Case handling
+
+**Solution Approach:**
+```python
+# SIMPLE (Compare with reverse):
+text = "racecar"
+if text == text[::-1]:
+    print("Palindrome")
+else:
+    print("Not a Palindrome")
+
+# GOOD (Ignoring spaces and case):
+text = "A man a plan a canal Panama"
+cleaned = text.lower().replace(" ", "")
+if cleaned == cleaned[::-1]:
+    print("Palindrome")
+else:
+    print("Not a Palindrome")
+
+# WITH INPUT:
+text = input("Enter text: ")
+cleaned = "".join(text.lower().split())
+is_palindrome = cleaned == cleaned[::-1]
+print("Palindrome" if is_palindrome else "Not a Palindrome")
+
+# TWO-POINTER (For learning):
+text = "racecar"
+left, right = 0, len(text) - 1
+is_palindrome = True
+while left < right:
+    if text[left] != text[right]:
+        is_palindrome = False
+        break
+    left += 1
+    right -= 1
+print("Palindrome" if is_palindrome else "Not a Palindrome")
+```
+
+**Key Points:**
+- Remove spaces with `.replace(" ", "")` or `.split()`
+- Convert to lowercase for case-insensitive comparison
+- Two-pointer is more efficient for very long strings
+
+---
+
+### Q18: Count Vowels and Consonants
+**Problem:** Count the number of vowels and consonants in a string.
+
+**Example:**
+```
+Input: "Hello World"
+Output:
+Vowels: 3 (e, o, o)
+Consonants: 7 (H, l, l, W, r, l, d)
+```
+
+**What to Use:**
+- Loop through string
+- Check if character is vowel using `in` operator
+- `isalpha()` to check if character is letter
+
+**What NOT to Use:**
+- ❌ Don't count spaces as consonants
+- ❌ Don't forget case-insensitivity
+
+**Concepts:**
+- Character checking
+- String iteration
+- Membership testing with `in`
+
+**Solution Approach:**
+```python
+# GOOD (Loop approach):
+text = "Hello World"
+vowels = "aeiouAEIOU"
+vowel_count = 0
+consonant_count = 0
+
+for char in text:
+    if char.isalpha():
+        if char in vowels:
+            vowel_count += 1
+        else:
+            consonant_count += 1
+
+print(f"Vowels: {vowel_count}")
+print(f"Consonants: {consonant_count}")
+
+# ELEGANT (List comprehension):
+text = "Hello World"
+vowels = "aeiou"
+vowel_count = sum(1 for char in text.lower() if char in vowels)
+consonant_count = sum(1 for char in text if char.isalpha() and char.lower() not in vowels)
+
+print(f"Vowels: {vowel_count}")
+print(f"Consonants: {consonant_count}")
+```
+
+**Key Points:**
+- Use `.isalpha()` to check if character is a letter
+- Convert to lowercase for comparison
+- Ignore spaces, numbers, and special characters
+
+---
+
+### Q19: Remove Spaces
+**Problem:** Remove all spaces from a string.
+
+**Example:**
+```
+Input: "Hello World Python"
+Output: "HelloWorldPython"
+```
+
+**What to Use:**
+- `replace()` method: `str.replace(" ", "")`
+- List comprehension with join
+- `split()` and `join()`
+
+**What NOT to Use:**
+- ❌ Don't loop and manually build (inefficient)
+
+**Concepts:**
+- String replacement
+- String splitting and joining
+
+**Solution Approach:**
+```python
+# SIMPLEST (Using replace):
+text = "Hello World Python"
+result = text.replace(" ", "")
+print(result)  # HelloWorldPython
+
+# GOOD (Using split and join):
+text = "Hello World Python"
+result = "".join(text.split())
+print(result)
+
+# LIST COMPREHENSION:
+text = "Hello World Python"
+result = "".join(char for char in text if char != " ")
+print(result)
+```
+
+**Key Points:**
+- `replace()` is simplest and fastest
+- `split()` without args removes all whitespace
+- Remove all spaces vs. collapse multiple spaces
+
+---
+
+### Q20: Find Frequency of Characters
+**Problem:** Count the frequency of each character in a string (ignoring spaces).
+
+**Example:**
+```
+Input: "hello world"
+Output:
+h: 1
+e: 1
+l: 3
+o: 2
+w: 1
+r: 1
+d: 1
+```
+
+**What to Use:**
+- Dictionary to store counts
+- `collections.Counter` (Pythonic)
+- Loop with `.get()` method
+
+**What NOT to Use:**
+- ❌ Don't count spaces
+- ❌ Don't use nested loops for counting
+
+**Concepts:**
+- Dictionary/hash map
+- Counter data structure
+- Character frequency analysis
+
+**Solution Approach:**
+```python
+# PYTHONIC (Using Counter):
+from collections import Counter
+text = "hello world"
+frequency = Counter(char for char in text if char != " ")
+
+for char, count in frequency.most_common():
+    print(f"{char}: {count}")
+
+# GOOD (Dictionary):
+text = "hello world"
+frequency = {}
+for char in text:
+    if char != " ":
+        frequency[char] = frequency.get(char, 0) + 1
+
+for char, count in frequency.items():
+    print(f"{char}: {count}")
+
+# SIMPLE (Manual dictionary):
+text = "hello world"
+frequency = {}
+for char in text:
+    if char != " ":
+        if char in frequency:
+            frequency[char] += 1
+        else:
+            frequency[char] = 1
+
+for char, count in sorted(frequency.items()):
+    print(f"{char}: {count}")
+```
+
+**Key Points:**
+- Counter is built for this task
+- `.get(key, default)` for safe dictionary access
+- Ignore spaces and special characters
+- `.most_common()` gives sorted by frequency
+
+---
+
+## 🔧 SECTION 2: INTERMEDIATE STRING OPERATIONS
+
+### Q21: Check Anagram
+**Problem:** Check if two strings are anagrams (contain same characters in different order).
+
+**Example:**
+```
+Input: "listen", "silent"
+Output: Anagram
+
+Input: "hello", "world"
+Output: Not an Anagram
+```
+
+**What to Use:**
+- Sort and compare: `sorted(str1) == sorted(str2)`
+- Use Counter and compare
+- Character frequency comparison
+
+**What NOT to Use:**
+- ❌ Don't check character by character manually
+- ❌ Don't forget to ignore case and spaces
+
+**Concepts:**
+- Character sorting
+- Frequency comparison
+- Case normalization
+
+**Solution Approach:**
+```python
+# BEST (Sort approach):
+str1 = "listen"
+str2 = "silent"
+
+if sorted(str1) == sorted(str2):
+    print("Anagram")
+else:
+    print("Not an Anagram")
+
+# GOOD (Using Counter):
+from collections import Counter
+str1 = "listen"
+str2 = "silent"
+
+if Counter(str1) == Counter(str2):
+    print("Anagram")
+else:
+    print("Not an Anagram")
+
+# WITH SPACES AND CASE (Ignoring them):
+str1 = "The Eyes"
+str2 = "They See"
+
+cleaned1 = "".join(str1.lower().split())
+cleaned2 = "".join(str2.lower().split())
+
+if sorted(cleaned1) == sorted(cleaned2):
+    print("Anagram")
+else:
+    print("Not an Anagram")
+```
+
+**Key Points:**
+- Sorting is O(n log n) but simple
+- Counter is O(n) and intuitive
+- Remove spaces and convert to lowercase
+- Check length first for optimization
+
+---
+
+### Q22: First Non-Repeating Character
+**Problem:** Find the first character that appears only once in the string.
+
+**Example:**
+```
+Input: "leetcode"
+Output: 'l'
+
+Input: "loveleetcode"
+Output: 'v'
+
+Input: "aabb"
+Output: None (or "No unique character")
+```
+
+**What to Use:**
+- Dictionary to store frequencies
+- Counter for counting
+- Loop through string to find first unique
+
+**What NOT to Use:**
+- ❌ Don't check each character with `.count()` (inefficient)
+
+**Concepts:**
+- Frequency tracking
+- Ordered iteration
+- Hash map lookup
+
+**Solution Approach:**
+```python
+# GOOD (Dictionary approach):
+text = "leetcode"
+frequency = {}
+
+# Count frequencies
+for char in text:
+    frequency[char] = frequency.get(char, 0) + 1
+
+# Find first non-repeating
+for char in text:
+    if frequency[char] == 1:
+        print(f"First non-repeating: {char}")
+        break
+else:
+    print("No unique character")
+
+# PYTHONIC (Using Counter):
+from collections import Counter
+text = "leetcode"
+frequency = Counter(text)
+
+for char in text:
+    if frequency[char] == 1:
+        print(f"First non-repeating: {char}")
+        break
+else:
+    print("No unique character")
+
+# ONE-LINER:
+text = "leetcode"
+result = next((c for c in text if text.count(c) == 1), None)
+print(result or "No unique character")
+```
+
+**Key Points:**
+- Count frequencies first
+- Iterate original string to preserve order
+- Use dictionary for O(1) lookup
+- Handle case when no unique character exists
+
+---
+
+### Q23: Longest Word in Sentence
+**Problem:** Find the longest word in a sentence.
+
+**Example:**
+```
+Input: "The quick brown fox jumps"
+Output: "quick" (or "brown") - 5 characters
+
+Input: "Python programming is fun"
+Output: "programming" - 11 characters
+```
+
+**What to Use:**
+- `split()` to get words
+- `max()` with key parameter
+- Loop to track longest
+
+**What NOT to Use:**
+- ❌ Don't hardcode word lengths
+- ❌ Don't include punctuation
+
+**Concepts:**
+- String splitting
+- Key-based comparison
+- String length
+
+**Solution Approach:**
+```python
+# SIMPLEST (Using max):
+sentence = "The quick brown fox jumps"
+words = sentence.split()
+longest = max(words, key=len)
+print(f"Longest word: {longest}")
+
+# GOOD (Loop approach):
+sentence = "The quick brown fox jumps"
+words = sentence.split()
+longest = ""
+max_length = 0
+
+for word in words:
+    if len(word) > max_length:
+        max_length = len(word)
+        longest = word
+
+print(f"Longest word: {longest}")
+
+# WITH LENGTH:
+sentence = "The quick brown fox jumps"
+words = sentence.split()
+longest = max(words, key=len)
+print(f"Longest word: {longest} ({len(longest)} characters)")
+
+# REMOVING PUNCTUATION:
+import string
+sentence = "The quick brown fox jumps!"
+words = sentence.translate(str.maketrans('', '', string.punctuation)).split()
+longest = max(words, key=len)
+print(f"Longest word: {longest}")
+```
+
+**Key Points:**
+- `split()` without args removes all whitespace
+- `max(items, key=len)` finds longest by length
+- Remove punctuation for accurate comparison
+- Handle empty input
+
+---
+
+### Q24: Capitalize First Letter of Each Word
+**Problem:** Capitalize the first letter of each word in a string.
+
+**Example:**
+```
+Input: "hello world python"
+Output: "Hello World Python"
+
+Input: "the quick brown fox"
+Output: "The Quick Brown Fox"
+```
+
+**What to Use:**
+- `title()` method (built-in)
+- List comprehension with capitalize
+- Loop through words
+
+**What NOT to Use:**
+- ❌ Don't manually handle each character
+
+**Concepts:**
+- String methods
+- Word iteration
+- Case transformation
+
+**Solution Approach:**
+```python
+# SIMPLEST (Using title):
+text = "hello world python"
+result = text.title()
+print(result)  # Hello World Python
+
+# GOOD (Using capitalize):
+text = "hello world python"
+words = text.split()
+result = " ".join(word.capitalize() for word in words)
+print(result)
+
+# MANUAL APPROACH:
+text = "hello world python"
+result = ""
+capitalize_next = True
+
+for char in text:
+    if char == " ":
+        result += char
+        capitalize_next = True
+    elif capitalize_next:
+        result += char.upper()
+        capitalize_next = False
+    else:
+        result += char
+
+print(result)
+
+# CASE-SENSITIVE (title can have issues):
+text = "iPhone and iPad"
+result = " ".join(word[0].upper() + word[1:] for word in text.split())
+print(result)  # IPhone And IPad
+```
+
+**Key Points:**
+- `.title()` is simplest but treats apostrophes oddly
+- `.capitalize()` only capitalizes first character of word
+- `.upper()` converts entire string to uppercase
+- Manual loop for custom capitalization rules
+
+---
+
+### Q25: Remove Duplicates from String
+**Problem:** Remove duplicate characters from a string while maintaining order.
+
+**Example:**
+```
+Input: "programming"
+Output: "progamin"
+
+Input: "aabbccdd"
+Output: "abcd"
+```
+
+**What to Use:**
+- Dictionary/set to track seen characters
+- List and maintain order
+- `dict.fromkeys()` (Python 3.7+)
+
+**What NOT to Use:**
+- ❌ Don't use set conversion (loses order)
+- ❌ Don't use nested loops
+
+**Concepts:**
+- Order preservation
+- Set operations
+- Hash map for tracking
+
+**Solution Approach:**
+```python
+# GOOD (Using dict and order):
+text = "programming"
+seen = set()
+result = ""
+
+for char in text:
+    if char not in seen:
+        result += char
+        seen.add(char)
+
+print(result)  # progamin
+
+# PYTHONIC (dict.fromkeys - Python 3.7+):
+text = "programming"
+result = "".join(dict.fromkeys(text))
+print(result)  # progamin
+
+# LIST COMPREHENSION (With tracking):
+text = "programming"
+seen = set()
+result = "".join(char for char in text if not (char in seen or seen.add(char)))
+print(result)
+
+# ALTERNATIVE (Using list):
+text = "programming"
+result = []
+for char in text:
+    if char not in result:
+        result.append(char)
+print("".join(result))
+```
+
+**Key Points:**
+- Track seen characters in a set for O(1) lookup
+- Check membership before adding
+- `dict.fromkeys()` preserves insertion order (Python 3.7+)
+- Remove `not in result` is O(n) for lists
+
+---
+
+## 📊 QUICK REFERENCE - STRINGS
+
+| Problem | Best Approach | Time | Space |
+|---------|---------------|------|-------|
+| **Reverse** | Slicing `[::-1]` | O(n) | O(n) |
+| **Palindrome** | Compare with reverse | O(n) | O(n) |
+| **Vowel/Consonant Count** | Loop with `in` | O(n) | O(1) |
+| **Remove Spaces** | `replace()` | O(n) | O(n) |
+| **Frequency** | Counter | O(n) | O(k) |
+| **Anagram** | Sort and compare | O(n log n) | O(n) |
+| **First Unique** | Dict + loop | O(n) | O(k) |
+| **Longest Word** | `max()` with key | O(n) | O(n) |
+| **Capitalize** | `title()` | O(n) | O(n) |
+| **Remove Duplicates** | Dict + order | O(n) | O(k) |
+
+---
+
+## 🎓 KEY STRING CONCEPTS
+
+### String Methods
+- `.upper()`, `.lower()` - Case conversion
+- `.replace()` - Replace substring
+- `.split()` - Split into list
+- `.join()` - Combine list to string
+- `.strip()` - Remove leading/trailing whitespace
+- `.isalpha()`, `.isdigit()` - Character checks
+
+### String Operations
+- Slicing: `str[start:end:step]`
+- Concatenation: `str1 + str2`
+- Repetition: `str * n`
+- Membership: `char in str`
+- Length: `len(str)`
+
+### Common Patterns
+1. **Frequency Counting** - Use Counter or dict
+2. **Character Validation** - Use `in` with strings
+3. **Word Processing** - `split()` and iterate
+4. **String Building** - Use `join()` not `+`
+5. **Order Preservation** - Track with dict/set
+
+---
+
+## ⚠️ COMMON STRING MISTAKES
+
+1. **Using `+` in loops** - O(n²) complexity; use `join()`
+2. **Forgetting `.lower()` for comparisons** - Case sensitivity issues
+3. **Not handling spaces** - `split()` vs `replace()`
+4. **Checking membership with `.count()`** - Use `in` instead
+5. **Modifying string in loop** - Strings are immutable; build new string
+6. **Losing order with sets** - Use dict/set with order tracking
+7. **Not stripping input** - Use `.strip()` for user input
+8. **Inefficient character checking** - Use `in` with strings, not loops
+9. **Assuming ASCII only** - Unicode characters behave differently
+10. **Not considering edge cases** - Empty strings, single character, special chars
+
+---
+
+## 💡 PROGRESSION PATH
+
+1. **Basic Operations** (Q16-Q20): Reversal, palindrome, vowel/consonant, spaces, frequency
+2. **Intermediate** (Q21-Q25): Anagrams, unique chars, longest word, capitalization, deduplication
+
+Start with basic string operations and progress to more complex manipulations!
